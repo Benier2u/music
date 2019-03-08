@@ -1,0 +1,19 @@
+Réaliser un module permettant d'effectuer des recherches à l'aide de l'api musicBrainz
+
+en utilisant: 
+	-Vue2.js et ses components
+	-Bootstrap
+
+l'objectif est de séparer au maximum le contenu, la forme  et le développement.
+Vous veillerez à ce que votre code soit modulaire et maintenable
+
+La recherche doit permettre doit permettre à minima la rehcerche d'artiste ou de titre.
+
+L'affichage doit être aboutie , actuel (material design ou flat design ) et le plus complet possible
+
+Des liens doivent permettre de naviguer dans les résultat de recherche
+
+On doit pouvoir afficher :
+	-la liste des artistes avec ses détails
+	-la liste des titres ou album d'un artiste
+	-associer des pictogramme(voir flaticon) avec chaque type de résultat. 

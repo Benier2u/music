@@ -1,0 +1,103 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/accounting.js/0.3.2/accounting.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
+</head>
+
+<body>
+
+
+
+    <div id="application">
+        <nav class="navbar  navbar-light" style="background-color: #e3f2fd;">
+            <a class="navbar-brand">MusicBrainz</a>
+            <div class="row">
+                <div class="col-sm">
+                    <input type="text" class="form-control " v-on:keyup.enter="doSearch()" placeholder="recherche"
+                        v-model="search">
+                </div>
+                <div class="col-sm">
+                    <button v-on:click="doSearch()" class="btn btn-primary">Recherche</button>
+                </div>
+            </div>
+        </nav>
+
+        <div v-if="searchFindSomething">
+            <h3>artiste</h3>
+            <tableartiste v-bind:table="infoArtist"></tableartiste>
+            <h3>album</h3>
+            <tablealbum v-bind:talbum="infoRecording"></tablealbum>
+        </div>
+
+
+    </div>
+
+    <script src="component.js"></script>
+
+    <script>
+
+        var app = new Vue({
+            el: "#application",
+            data: {
+                infoArtist: "",
+                search: "",
+                searchFindSomething: false,
+                infoRecording: "",
+                pochette: "",
+
+            },
+            methods: {
+                findArtistByname() {
+                    // fait la recharche des artiste en fonction du champ recherche
+                    axios.get(" http://musicbrainz.org/ws/2/artist?query=" + this.search + "&fmt=json&limit=5")
+                        .then(response => {
+                            this.infoArtist = response.data.artists;
+                        })
+                        .catch(error => {
+                            console.log("problème de connexion des artiste");
+                        })
+                },
+                findAlbumByname() {
+                    // fait la recherche des album en fonction du champ recherche
+                    axios.get(" http://musicbrainz.org/ws/2/release?query=" + this.search + "&fmt=json&limit=5")
+                        .then(response => {
+                            this.infoRecording = response.data.releases;
+
+
+                        })
+                        .catch(error => {
+                            console.log("problème de connexion des album")
+                        })
+                },
+            
+                doSearch() {
+                    // appele les methodes de recherche
+                    this.searchFindSomething = true;
+                    this.findArtistByname();
+                    this.findAlbumByname();
+
+                }
+
+            },
+            computed: {
+
+            },
+        });
+    </script>
+
+    <style>
+
+
+    </style>
+
+
+</body>
+
+</html>

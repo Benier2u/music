@@ -1,0 +1,52 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
+
+</head>
+
+<div id="application">
+    <infoartiste v-bind:listinfo="infoPersoArtist"></infoartiste>
+    
+
+</div>
+<script src="component.js"></script> 
+<script>
+
+    var app = new Vue({
+        el: "#application",
+        data: {
+            infoPersoArtist:""
+
+        },
+        methods: {
+
+
+        },
+        computed: {
+
+        },
+        created(){
+            console.log(new URL(window.location.href).searchParams.get("id"));
+            axios.get(" http://musicbrainz.org/ws/2/artist/"+new URL(window.location.href).searchParams.get("id"))
+            .then(response => {
+                this.infoPersoArtist=response.data;
+                
+            })
+            .catch(error =>{
+                console.log("marche pas");
+            })
+            
+        }
+    });
+</script>
+
+
+
+</html>
