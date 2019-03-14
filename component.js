@@ -33,13 +33,14 @@ Vue.component('tablealbum', {
                   <tr>
                     <th scope="col">titre album</th>
                     <th scope="col">auteur</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="album in talbum" >
-                    <td>{{album.title}}</td>
+                    <td>{{album.title}}</a></td>
                     <td>{{album['artist-credit'][0].artist.name}}</td>
-                    <td><a v-bind:href="'album.html?id='+album.id"><button class="btn btn-primary">voir profil</button></a></td>
+                    <td><a v-bind:href="'album.html?id='+album.id"><button class="btn btn-primary">voir album</button></a></td>
                   </tr>
                 </tbody>
     </table>

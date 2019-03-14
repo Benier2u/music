@@ -11,8 +11,11 @@
 </head>
 
 <div id="application">
+    <nav class="navbar  navbar-light" style="background-color: #33CCFF;">
+        <a class="navbar-brand">MusicBrainz</a>
+    </nav>
     <div v-if="pochette === 1">
-        <h6>pas d'image</h6>
+        <h6>aucune information disponible</h6>
     </div>
     <div v-else>
         <div class="card-group">
@@ -28,37 +31,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="card">
-            <div class="row no-gutters">
-                <div class="col-auto">
-                    <img v-bind:src="pochette" alt="image" style="max-width:10%;">
-                </div>
-                <div class="col">
-                    <titrealbum v-bind:titre="infoAlbum"></titrealbum>
-                </div>
-            </div>
-            <div class="card-footer w-100 text-muted">
-                Footer stating cats are CUTE little animals
-            </div>
-        </div> -->
-        <!-- <div class="card flex-row flex-wrap">
-            <div class="card-header border-0">
-                <img v-bind:src="pochette" alt="image" style="max-width:10%;">
-            </div>
-            <div class="card-block px-2">
-                <titrealbum v-bind:titre="infoAlbum"></titrealbum>
-            </div>
-        </div> -->
-        <!-- <div class="d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" v-bind:src="pochette" alt="Card image cap">
-                <div class="card-body">
-                    <titrealbum v-bind:titre="infoAlbum"></titrealbum>
-                </div>
-            </div>
-        </div>
-        <img v-bind:src="pochette" style="max-width:10%;"> -->
-
     </div>
 
 

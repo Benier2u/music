@@ -3,7 +3,6 @@
 <head>
 
     <meta charset="UTF-8">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -12,37 +11,33 @@
 </head>
 
 <div id="application">
+    <nav class="navbar  navbar-light" style="background-color: #33CCFF;">
+        <a class="navbar-brand">MusicBrainz</a>
+    </nav>
     <infoartiste v-bind:listinfo="infoPersoArtist"></infoartiste>
-    
+
 
 </div>
-<script src="component.js"></script> 
+<script src="component.js"></script>
 <script>
 
     var app = new Vue({
         el: "#application",
         data: {
-            infoPersoArtist:""
+            infoPersoArtist: ""
 
         },
-        methods: {
+        created() {
+            // recupère l'id de l'artiste dans l'url et recherche 
+            axios.get(" http://musicbrainz.org/ws/2/artist/" + new URL(window.location.href).searchParams.get("id"))
+                .then(response => {
+                    this.infoPersoArtist = response.data;
 
+                })
+                .catch(error => {
+                    console.log("marche pas");
+                })
 
-        },
-        computed: {
-
-        },
-        created(){
-            console.log(new URL(window.location.href).searchParams.get("id"));
-            axios.get(" http://musicbrainz.org/ws/2/artist/"+new URL(window.location.href).searchParams.get("id"))
-            .then(response => {
-                this.infoPersoArtist=response.data;
-                
-            })
-            .catch(error =>{
-                console.log("marche pas");
-            })
-            
         }
     });
 </script>
